@@ -14,6 +14,9 @@ export default function PageItem(props) {
                         <Card.Img variant="top" src={props.item.img} />
                         <Card.Body>
                             <Card.Text>
+                                {props.item.name}
+                            </Card.Text>
+                            <Card.Text>
                                 {props.item.description}
                             </Card.Text>
                             <Card.Text>
