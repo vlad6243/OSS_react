@@ -39,10 +39,10 @@ function App() {
         {/*<div id="block" className={str}>*/}
         {/*    <h1>Текст для класса 'Блок'</h1>*/}
         {/*</div>*/}
-        {/*<Chess chessArray={chess}/>*/}
+        {/* <Chess chessArray={chess}/> */}
         {/*<ListItems itemsArray={items}/>*/}
         {/*<PageItem item = {items[0]} />*/}
-        <ProfilePage profile={profile[0]}/>
+        {/* <ProfilePage profile={profile[0]}/> */}
     </div>
   );
 }
