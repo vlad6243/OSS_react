@@ -26,7 +26,7 @@ export default function Chessboard(props) {
 }
 
 function BorderLine(props) {
-    return props.chessArray.map( el => <td className='chess_header'>{el.name}</td>)
+    return props.chessArray.map( el => <td key={el.id} className='chess_header'>{el.name}</td>)
 }
 
 function line(id) {

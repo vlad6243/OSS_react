@@ -1,6 +1,5 @@
 import {Container} from "react-bootstrap";
 import {Card} from "react-bootstrap";
-import {Button} from "react-bootstrap";
 
 export default function ProfilePage(props) {
     return(

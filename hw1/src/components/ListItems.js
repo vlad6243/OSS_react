@@ -9,7 +9,7 @@ export default function ListItems(props) {
         <Container>
             <CardDeck >
             {props.itemsArray.map( el => {
-                return <Item itemsArray = {el}/>
+                return <Item id={el.id} itemsArray = {el}/>
             })}
             </CardDeck>
         </Container>
