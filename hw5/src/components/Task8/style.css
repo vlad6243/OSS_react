@@ -1,0 +1,15 @@
+p {
+    padding: 10px;
+}
+
+.info {
+    border: 2px solid blue;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+.warning {
+    border: 2px solid orange;
+}
