@@ -1,0 +1,50 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: Helvetica;
+  font-size: 1.4rem;
+  padding: 2rem;
+}
+nav {
+  display: inline-block;
+  border: 0.1rem solid #333;
+  padding: 3rem;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 4rem;
+}
+li {
+  line-height: 3rem;
+}
+a {
+  color: #44b;
+  text-decoration: none;
+}
+button {
+  border-radius: 0.3rem;
+  border-width: 0;
+  color: #44b;
+  font-size: 1.6rem;
+  outline-width: 0;
+  cursor: pointer;
+  position: absolute;
+  margin: 1rem;
+}
+button:hover {
+  opacity: 0.7;
+}
+button:before {
+  content: '';
+  display: inline-block;
+  background-image: url(https://i.imgur.com/MCnjU2q.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+}
+#drawer div {
+  position: relative;
+}

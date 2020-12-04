@@ -1,0 +1,11 @@
+.done {
+    text-decoration: line-through;
+}
+
+.start {
+    text-decoration: underline;
+}
+
+.inProgess {
+    text-decoration: none;
+}
