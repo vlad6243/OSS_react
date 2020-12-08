@@ -1,0 +1,71 @@
+[
+  {
+    "_id": "5d99c455150cb287254b9307",
+    "guid": "c01dac88-f9e7-4645-aa12-8e7cd1146ee7",
+    "isActive": true,
+    "balance": "$1,626.48",
+    "age": 29,
+    "name": {
+      "first": "Lourdes",
+      "last": "Alvarez"
+    },
+    "company": "SEQUITUR",
+    "email": "lourdes.alvarez@sequitur.com",
+    "latitude": "37.158252",
+    "longitude": "128.525958",
+    "tags": ["ut", "veniam", "consequat", 333, "fugiat"],
+    "range": [0, 1, 2],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Dunn Gay"
+      },
+      {
+        "id": 1,
+        "name": "Viola Justice"
+      }
+    ]
+  },
+  {
+    "_id": "5d99c455d830c6dcdaff0407",
+    "index": 1,
+    "isActive": false,
+    "balance": 2393.08,
+    "picture": "http://placehold.it/32x32",
+    "age": 40,
+    "name": {
+      "first": "Chaney",
+      "last": "Cline",
+      "patronymic": "Ivanovich"
+    },
+    "company": "NSPIRE",
+    "email": "chaney.cline@nspire.name",
+    "latitude": 24.474483,
+    "longitude": -74.985536,
+    "tags": [
+      "amet",
+      "proident",
+      "dolor",
+      "officia",
+      "adipisicing",
+      {
+        "id": "article",
+        "name": "article"
+      }
+    ],
+    "range": [0, 1, 2, 3, 4],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Veronica Randolph"
+      },
+      {
+        "id": 1,
+        "name": "Small Moreno"
+      },
+      {
+        "name": "Darla Carr"
+      }
+    ]
+  }
+]

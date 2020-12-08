@@ -1,0 +1,54 @@
+{
+  "name": "9",
+  "title": "Дополнительные возможности компонентов",
+  "topics": [
+    {
+      "name": "liftingStateUp",
+      "title": "Всплытие состояний",
+      "tasks": [
+        {
+          "name": "task 1"
+        },
+        {
+          "name": "task 2"
+        },
+        {
+          "name": "task 3"
+        }
+      ]
+    },
+    {
+      "name": "propTypes",
+      "title": "Использование PropTypes",
+      "tasks": [
+        {
+          "name": "task 1"
+        },
+        {
+          "name": "task 2"
+        },
+        {
+          "name": "task 3"
+        },
+        {
+          "name": "task 4"
+        }
+      ]
+    },
+    {
+      "name": "fragments",
+      "title": "Фрагменты",
+      "tasks": [
+        {
+          "name": "task 1"
+        },
+        {
+          "name": "task 2"
+        },
+        {
+          "name": "task 3"
+        }
+      ]
+    }
+  ]
+}

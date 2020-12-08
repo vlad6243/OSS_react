@@ -1,0 +1,63 @@
+{
+  "name": "8",
+  "title": "Списки компонентов. Формы",
+  "topics": [
+    {
+      "name": "lists",
+      "title": "Отрисовка списка компонентов, ключи",
+      "tasks": [
+        {
+          "name": "task1"
+        },
+        {
+          "name": "task2"
+        },
+        {
+          "name": "task3"
+        },
+        {
+          "name": "task4"
+        }
+      ]
+    },
+    {
+      "name": "forms",
+      "title": "Формы. Контролируемые компоненты. Альтернатива контролируемым компонентам",
+      "tasks": [
+        {
+          "name": "Create an Uncontrolled Form"
+        },
+        {
+          "name": "Create a Controlled Form"
+        },
+        {
+          "name": "Transitioning from uncontrolled inputs to controlled"
+        }
+      ]
+    },
+    {
+      "name": "events",
+      "title": "Обработка событий и привязка событий",
+      "tasks": [
+        {
+          "name": "Bind this to event handlers in 3 different ways"
+        },
+        {
+          "name": "Refine WindowSize component"
+        },
+        {
+          "name": "Repair click counter"
+        }
+      ]
+    },
+    {
+      "name": "common",
+      "title": "Общие задания",
+      "tasks": [
+        {
+          "name": "Bind this to event handlers in 3 different ways"
+        }
+      ]
+    }
+  ]
+}
