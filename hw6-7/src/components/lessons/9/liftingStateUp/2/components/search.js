@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Button = styled.button`
   font-weight: bold;
@@ -44,6 +45,13 @@ const Search = ({ query, handleQuery, className, label }) => (
     </Button>
   </Row>
 );
+
+Search.propTypes ={
+    query:PropTypes.string,
+    handleQuery:PropTypes.func,
+    className:PropTypes.string,
+    label:PropTypes.string.isRequired
+}
 
 export { Search };
 export default Search;

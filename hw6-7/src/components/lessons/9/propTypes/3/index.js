@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Badge(props) {
   const { authed, style, name, handle, img, addFriend } = props;
@@ -15,6 +16,15 @@ function Badge(props) {
       <button onClick={addFriend}>Add Friend</button>
     </div>
   );
+}
+
+Badge.propTypes = {
+    authed:PropTypes.bool,
+    style:PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    name:PropTypes.string,
+    handle:PropTypes.string,
+    img:PropTypes.string,
+    addFriend:PropTypes.func
 }
 
 const Task = () => {

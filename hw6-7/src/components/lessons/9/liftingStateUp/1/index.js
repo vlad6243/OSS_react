@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class VoteComponent extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      votesNumber: 0,
-    };
-
+    // this.state = {
+    //   votesNumber: 0,
+    // };
   }
 
   style = {
@@ -16,18 +16,23 @@ class VoteComponent extends React.PureComponent {
     border: 'solid 1px grey',
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.votesNumber !== prevState.votesNumber) {
-      this.props.onVote(this.state.votesNumber);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if (this.state.votesNumber !== prevState.votesNumber) {
+  //     this.props.onVote(this.state.votesNumber);
+  //   }
+  // }
 
   increase = () => {
-    this.setState(({ votesNumber }) => ({ votesNumber: votesNumber + 1 }));
+    // this.setState(({ votesNumber }) => ({ votesNumber: votesNumber + 1 }));
+      const numb = this.props.voteNumb + 1;
+      this.props.onVote(numb)
   };
 
   decrease = () => {
-    this.setState(({ votesNumber }) => ({ votesNumber: votesNumber - 1 }));
+    // this.setState(({ votesNumber }) => ({ votesNumber: votesNumber - 1 }));
+      const numb = this.props.voteNumb - 1;
+      this.props.onVote(numb)
+
   };
 
   render() {
@@ -43,6 +48,14 @@ class VoteComponent extends React.PureComponent {
   }
 }
 
+VoteComponent.propTypes = {
+    voteNumb: PropTypes.number.isRequired,
+    onClick: PropTypes.func,
+    onVote: PropTypes.func,
+    terminalNumber:PropTypes.number.isRequired,
+    resolution:PropTypes.string.isRequired
+}
+
 const VotingDisplay = ({ resolution, result }) => {
   return (
     <React.Fragment>
@@ -51,6 +64,11 @@ const VotingDisplay = ({ resolution, result }) => {
     </React.Fragment>
   );
 };
+
+VotingDisplay.propTypes = {
+    resolution: PropTypes.string.isRequired,
+    result: PropTypes.number.isRequired
+}
 
 class VotingSystem extends React.Component {
   constructor(props) {
@@ -62,7 +80,7 @@ class VotingSystem extends React.Component {
   }
 
   onVote = (votesNumber) => {
-    this.setState({ votesNumber });
+    this.setState({ votesNumber});
   };
 
   render() {
@@ -74,21 +92,28 @@ class VotingSystem extends React.Component {
         <VoteComponent
           resolution={resolution}
           onVote={this.onVote}
+          voteNumb={this.state.votesNumber}
           terminalNumber={1}
         />
         <VoteComponent
           resolution={resolution}
           onVote={this.onVote}
+          voteNumb={this.state.votesNumber}
           terminalNumber={2}
         />
         <VoteComponent
           resolution={resolution}
           onVote={this.onVote}
+          voteNumb={this.state.votesNumber}
           terminalNumber={3}
         />
       </React.Fragment>
     );
   }
+}
+
+VotingSystem.propTypes = {
+    resolution:PropTypes.string.isRequired,
 }
 
 const resolution = 'Free beer to all programmers';

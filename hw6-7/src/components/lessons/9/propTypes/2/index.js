@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import data from './data.json';
 
 const PersonalInfo = ({ data }) => (
@@ -6,6 +7,37 @@ const PersonalInfo = ({ data }) => (
     <pre>{JSON.stringify(data, null, 2)}</pre>
   </div>
 );
+
+PersonalInfo.propTypes = {
+    data:PropTypes.shape({
+        _id:PropTypes.string.isRequired,
+        guid:PropTypes.string.isRequired,
+        isActive:PropTypes.bool.isRequired,
+        balance:PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]).isRequired,
+        age:PropTypes.number,
+        name:PropTypes.shape({
+            first:PropTypes.string.isRequired,
+            last:PropTypes.string.isRequired,
+        }).isRequired,
+        company:PropTypes.string.isRequired,
+        email:PropTypes.string.isRequired,
+        latitude:PropTypes.string,
+        longitude:PropTypes.string,
+        tags:PropTypes.arrayOf(
+            PropTypes.node
+        ).isRequired,
+        range:PropTypes.arrayOf(PropTypes.number),
+        friends:PropTypes.arrayOf(
+            PropTypes.shape({
+                id:PropTypes.number,
+                name:PropTypes.string,
+            })
+        )
+    })
+}
 
 class ShowPersonalInfo extends React.Component {
   state = { selectedCompanyId: 'disabled' };

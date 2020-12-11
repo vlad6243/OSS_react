@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import blogPosts from './blogPosts.json';
 
 const Author = ({ username, name }) => (
@@ -7,6 +8,11 @@ const Author = ({ username, name }) => (
     <div>name: {name}</div>
   </div>
 );
+
+Author.propTypes = {
+    username:PropTypes.string.isRequired,
+    name:PropTypes.string.isRequired
+}
 
 const Comment = ({ author, comment }) => (
   <li className="comment">
@@ -17,6 +23,11 @@ const Comment = ({ author, comment }) => (
   </li>
 );
 
+Comment.propTypes = {
+    author:PropTypes.objectOf(PropTypes.string).isRequired,
+    comment:PropTypes.string.isRequired
+}
+
 const Comments = ({ comments }) => (
   <ul>
     {comments.map((i) => (
@@ -24,6 +35,10 @@ const Comments = ({ comments }) => (
     ))}
   </ul>
 );
+
+Comments.propTypes = {
+    comments:PropTypes.array
+}
 
 const BlogPosts = ({ posts }) => {
   return (
@@ -38,6 +53,28 @@ const BlogPosts = ({ posts }) => {
     </React.Fragment>
   );
 };
+
+BlogPosts.propTypes = {
+    posts: PropTypes.arrayOf(
+        PropTypes.shape({
+            id:PropTypes.string.isRequired,
+            author: PropTypes.shape({
+                username:PropTypes.string.isRequired,
+                name:PropTypes.string.isRequired
+            }).isRequired,
+            body:PropTypes.string.isRequired,
+            comments:PropTypes.arrayOf(
+                PropTypes.shape({
+                    id:PropTypes.string.isRequired,
+                    author: PropTypes.shape({
+                        username:PropTypes.string.isRequired,
+                        name:PropTypes.string.isRequired
+                    }).isRequired
+                })
+            )
+        })
+    )
+}
 
 const Task = () => {
   return (

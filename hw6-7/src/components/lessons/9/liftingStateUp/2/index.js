@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Chance from 'chance';
 import faker from 'faker';
 import styled from 'styled-components';
@@ -45,20 +46,33 @@ function Task() {
 
   const match = useRouteMatch(listPath);
 
+  const [archivedItems, setArchivedItems] = React.useState([]);
+
+  const handleArchive = (id) => {
+    setArchivedItems((archivedItems) => [...archivedItems, id]);
+  };
+
+  const resetArchive = () => {
+    setArchivedItems([])
+  }
+
   return (
-    <div className="task">
-      <Header>
-        {!match && <Link to={listPath}>list</Link>}
-        <Switch>
-          <Route path={listPath} exact>
-            <Link to={url}>back to task page</Link>
-            <List list={list} />
-          </Route>
-        </Switch>
-        <br />
-        <Label>{list.length} items</Label>
-      </Header>
-    </div>
+      <div className="task">
+        <Header>
+          {!match && <Link to={listPath}>list</Link>}
+          <Switch>
+            <Route path={listPath} exact>
+              <Link to={url}>back to task page</Link>
+              <List list={list}
+                    archivedItems={archivedItems}
+                    handleArchive={handleArchive}
+                    resetArchive={resetArchive}/>
+            </Route>
+          </Switch>
+          <br />
+          <Label>{list.length} items</Label>
+        </Header>
+      </div>
   );
 }
 

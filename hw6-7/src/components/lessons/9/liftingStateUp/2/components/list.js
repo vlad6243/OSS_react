@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Row = styled.li`
   display: flex;
@@ -38,39 +39,56 @@ const ArchivedLabel = styled(Label)`
 `;
 
 const byArchived = (archivedItems) => (item) =>
-  !archivedItems.includes(item.id);
+    !archivedItems.includes(item.id);
 
-const List = ({ className, list }) => {
-  const [archivedItems, setArchivedItems] = React.useState([]);
+const List = (props) => {
+    const {
+        className,
+        list,
+        archivedItems,
+        handleArchive,
+        resetArchive
+    } = props;
 
-  const handleArchive = (id) => {
-    setArchivedItems((archivedItems) => [...archivedItems, id]);
-  };
 
-  return (
-    <React.Fragment>
-      <Container className={className}>
-        {list.filter(byArchived(archivedItems)).map((item) => (
-          <Row key={item.id}>
-            <Label>{item.name}</Label>
-            <Button type="button" onClick={() => handleArchive(item.id)}>
-              Archive
-            </Button>
-          </Row>
-        ))}
-      </Container>
-      <ArchivedLabel>
-        {archivedItems.length} item{archivedItems.length === 1 ? '' : 's'}{' '}
-        archived...
-      </ArchivedLabel>
-      {archivedItems.length > 0 && (
-        <ResetButton onClick={() => setArchivedItems([])}>
-          Reset Archived
-        </ResetButton>
-      )}
-    </React.Fragment>
-  );
+    // const [archivedItems, setArchivedItems] = React.useState([]);
+    // const handleArchive = (id) => {
+    //     setArchivedItems((archivedItems) => [...archivedItems, id]);
+    // };
+
+    return (
+        <React.Fragment>
+            <Container className={className}>
+                {list.filter(byArchived(archivedItems)).map((item) => (
+                    <Row key={item.id}>
+                        <Label>{item.name}</Label>
+                        <Button type="button" onClick={() => handleArchive(item.id)}>
+                            Archive
+                        </Button>
+                    </Row>
+                ))}
+            </Container>
+            <ArchivedLabel>
+                {archivedItems.length} item{archivedItems.length === 1 ? '' : 's'}{' '}
+                archived...
+            </ArchivedLabel>
+            {archivedItems.length > 0 && (
+                <ResetButton onClick={() => resetArchive()}>
+                    Reset Archived
+                </ResetButton>
+            )}
+        </React.Fragment>
+    );
 };
+
+List.propTypes = {
+    className:PropTypes.string,
+    list:PropTypes.array,
+    archivedItems:PropTypes.array,
+    handleArchive:PropTypes.func,
+    resetArchive:PropTypes.func,
+
+}
 
 export { List };
 export default List;

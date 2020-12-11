@@ -17,19 +17,23 @@ function ResetPassword({ hasPassword, name, ...formProps }) {
   return (
     <Layout>
       {/*uncomment and fix the code below*/}
-      {/*hasPassword ? (
-        <h3>Reset your password</h3>
-        <p>
-          To finish resetting your password, enter your new password
-          here and hit the "Reset" button.
-        </p>
+      {hasPassword ? (
+          <>
+            <h3>Reset your password</h3>
+            <p>
+              To finish resetting your password, enter your new password
+              here and hit the "Reset" button.
+            </p>
+          </>
       ) : (
-        <h3>Hi {name}!</h3>
-        <p>Thanks for joining!</p>
-        <p>
-          Just one more step - please pick a password for your account:
-        </p>
-      )*/}
+          <>
+            <h3>Hi {name}!</h3>
+            <p>Thanks for joining!</p>
+            <p>
+              Just one more step - please pick a password for your account:
+            </p>
+          </>
+      )}
       <ResetPasswordForm {...formProps} />
     </Layout>
   );
