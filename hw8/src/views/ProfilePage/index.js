@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ProfileForm from "./ProfileForm";
-import {GET_PROFILE_URL, getProfile} from "../../axios/query";
+import {GET_PROFILE_URL} from "../../axios/query";
 import getQuery from "../../axios/axios-backend";
 
 

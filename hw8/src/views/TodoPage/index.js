@@ -1,86 +1,58 @@
 import React from 'react';
-import getQuery from '../../axios/axios-backend';
-import {makeStyles} from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {connect} from "react-redux";
+import {fetchTodos} from "../../redux/actions/todo";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import {GET_TODOS_URL} from "../../axios/query";
+import TableList from "./TableList";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-    },
-    paper: {
-        width: '100%',
-        marginBottom: theme.spacing(2),
-    },
-    table: {
-        minWidth: 750,
-    },
-    visuallyHidden: {
-        border: 0,
-        clip: 'rect(0 0 0 0)',
-        height: 1,
-        margin: -1,
-        overflow: 'hidden',
-        padding: 0,
-        position: 'absolute',
-        top: 20,
-        width: 1,
-    },
-    sel:{
-        marginLeft:15
-    }
-}));
 
-export default function TodoPage() {
-    const classes = useStyles();
+function TodoPage(props) {
     const [todoFilter, setTodoFilter] = React.useState('All');
-    const [todos, setTodos] = React.useState([]);
-    const [loading, setLoading] = React.useState(false)
+    // const [todos, setTodos] = React.useState([]);
+    // const [loading, setLoading] = React.useState(false)
 
     const handleChangeFilter = (event) => {
         const filter = event.target.value
         setTodoFilter(filter);
     };
 
-    const completeTask = index => {
-        const newTodo = [...todos];
-        newTodo[index].completed = !newTodo[index].completed;
-        setTodos(newTodo);
-    };
+    // const completeTask = index => {
+    //     const newTodo = [...todos];
+    //     newTodo[index].completed = !newTodo[index].completed;
+    //     setTodos(newTodo);
+    // };
 
 
-    const filterTodos = () => {
-        if(todoFilter === "All") return todos;
-        if(todoFilter === "Completed") return todos.filter(x => x.completed === true)
-        if(todoFilter === "Uncompleted") return todos.filter(x => x.completed === false)
+    const filterTodos = (todos) => {
+        switch(todoFilter){
+            case "All": return todos;
+            case "Completed": return todos.filter(x => x.completed === true);
+            case "Uncompleted": return todos.filter(x => x.completed === false);
+            default:return null
+        }
     }
 
     React.useEffect(() => {
-        setLoading(true)
-        const fetchData = async () => {
-            const result = await getQuery(GET_TODOS_URL)
-            setTodos(result.data);
-            setLoading(false)
-        };
-        fetchData();
+        // setLoading(true)
+        // const fetchData = async () => {
+        //
+        //     setTodos(result.data);
+        //     setLoading(false)
+        // };
+        // fetchData();
+
+        props.fetchTodos()
+
     }, []);
 
     return (
         <React.Fragment>
             <br/>
-            <div className={classes.sel}>
-                <FormControl className={classes.formControl}>
+            <div style={{marginLeft: 15}}>
+                <FormControl >
                     <InputLabel id="demo-simple-select-label">Todo</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
@@ -96,41 +68,27 @@ export default function TodoPage() {
             </div>
             <br/>
             {
-                loading ? <LinearProgress /> : <TableList todosList={filterTodos()} completed={completeTask}/>
+                props.loading ? <LinearProgress /> : <TableList todosList={filterTodos(props.todos)}
+                                                                //completed={completeTask}
+                />
             }
         </React.Fragment>
     );
 }
 
-function TableList({todosList,completed}) {
-    const classes = useStyles();
-    return(
-        <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <TableContainer>
-                    <Table
-                        className={classes.table}
-                        aria-labelledby="tableTitle"
-                        size={'medium'}
-                        aria-label="enhanced table"
-                    >
-                        <TableBody>
-                            {todosList.map((row,index) => {
-                                return (
-                                    <TableRow hover key={row.id} onClick={() => completed(index)}>
-                                        <TableCell padding="checkbox">
-                                            <Checkbox checked={row.completed}/>
-                                        </TableCell>
-                                        <TableCell component="th"  scope="row" padding="none">
-                                            {row.title}
-                                        </TableCell>
-                                    </TableRow>
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Paper>
-        </div>
-    )
+function mapStateToProps(state) {
+    return{
+        todos: state.todo.todos,
+        loading: state.todo.loading
+    }
+
 }
+
+function mapDispatchToProps(dispatch) {
+    return{
+        fetchTodos: () => dispatch(fetchTodos())
+    }
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodoPage)
