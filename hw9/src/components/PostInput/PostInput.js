@@ -8,6 +8,7 @@ export default function PostInput(props) {
     const keyPress = (e) => {
         if(e.key === "Enter" && value !== ""){
             props.add(value);
+            setValue("")
         }
     }
 

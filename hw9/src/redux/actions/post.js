@@ -75,27 +75,25 @@ export const changePost = (id,str,value) => {
     return async (dispatch, getState) =>{
         const state = getState().post.posts;
 
-        const changed = state.map(el => {
-            if(el.key == id){
-                if(str == "liked") return el.liked = value;
-                if(str == "favorite") return el.favorite = value;
-                if(str == "value") {
+        const changed = state.filter(el => el.key === id).map(el => {
+                if(str === "liked") return el.liked = value;
+                if(str === "favorite") return el.favorite = value;
+                if(str === "value") {
                     el.lastEditted = Date.now()
                     return el.value = value;
                 }
-            }
         })
         let body = {}
         try{
-            if(str == "liked") {
+            if(str === "liked") {
                 body = {liked:changed.toString()}
                 await putQuery(id,body);
             }
-            if(str == "favorite") {
+            if(str === "favorite") {
                 body = {favorite:changed.toString()}
                 await putQuery(id,body);
             }
-            if(str == "value") {
+            if(str === "value") {
                 body = {value:changed.toString()}
                 await putQuery(id,body);
             }
@@ -116,8 +114,6 @@ export function changePostsState(result) {
 
 export const deletePost = (id) => {
     return async (dispatch, getState) =>{
-        const state = getState().post.posts;
-
         try{
             await deleteQuery(id);
         }catch (e) {

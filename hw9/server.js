@@ -55,8 +55,8 @@ app.put('/thoughts/:thoughtId', (req, res) => {
     thoughts.map(thought => {
 
         if(thought.key == thoughtId){
-            if(body.liked != null) thought.liked = body.liked
-            if(body.favorite != null) thought.favorite = body.favorite
+            if(body.liked != null) thought.liked = body.liked === "true" ? true : false
+            if(body.favorite != null) thought.favorite = body.favorite === "true" ? true : false
             if(body.value != null) {
                 thought.lastEditted = Date.now()
                 thought.value = body.value

@@ -15,7 +15,6 @@ export async function postQuery (post) {
 }
 
 export async function putQuery (id,body) {
-    console.log(body)
     let response = await axiosInstance.put(`/${id}`,body);
     return response
 }
