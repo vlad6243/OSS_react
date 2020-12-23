@@ -1,0 +1,9 @@
+#root {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+div {
+    display: block;
+}
