@@ -79,14 +79,26 @@ export const changePost = (id,str,value) => {
             if(el.key == id){
                 if(str == "liked") return el.liked = value;
                 if(str == "favorite") return el.favorite = value;
-                if(str == "value") return el.value = value;
+                if(str == "value") {
+                    el.lastEditted = Date.now()
+                    return el.value = value;
+                }
             }
         })
-
+        let body = {}
         try{
-            if(str == "liked") await putQuery(id,{liked:changed.liked.toString()});
-            if(str == "favorite") await putQuery(id,{favorite:changed.favorite.toString()});
-            if(str == "value") await putQuery(id,{value:changed.value.toString()});
+            if(str == "liked") {
+                body = {liked:changed.toString()}
+                await putQuery(id,body);
+            }
+            if(str == "favorite") {
+                body = {favorite:changed.toString()}
+                await putQuery(id,body);
+            }
+            if(str == "value") {
+                body = {value:changed.toString()}
+                await putQuery(id,body);
+            }
         }catch (e) {
             dispatch(fetchPostsError(e));
         }

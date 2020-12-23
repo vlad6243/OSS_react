@@ -15,7 +15,6 @@ let thoughts = [
 ]
 
 app.get('/thoughts', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
     res.json({
         success: true,
         thoughts: thoughts
@@ -58,7 +57,10 @@ app.put('/thoughts/:thoughtId', (req, res) => {
         if(thought.key == thoughtId){
             if(body.liked != null) thought.liked = body.liked
             if(body.favorite != null) thought.favorite = body.favorite
-            if(body.value != null) thought.value = body.value
+            if(body.value != null) {
+                thought.lastEditted = Date.now()
+                thought.value = body.value
+            }
             return thought
         }
     })
